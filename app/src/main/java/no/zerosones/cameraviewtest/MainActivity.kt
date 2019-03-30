@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun processFrame(frame: Frame) {
+    private fun processFrame(inputFrame: Frame) {
         shouldThrottleBarcodeDetector.set(true)
+        val frame = inputFrame.freeze()
 
         val firebaseVisionImage = FirebaseVisionImage.fromByteArray(frame.data, getMetadataForFrame(frame))
         barcodeDetector.detectInImage(firebaseVisionImage)
